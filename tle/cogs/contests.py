@@ -425,6 +425,10 @@ class Contests(commands.Cog):
             since = cf_common.pretty_time_format(now - contest.end_time, only_most_significant=True)
             msg = f'{start}{en}|{en}{duration}{en}|{en}Ended {since} ago'
             embed.add_field(name='When', value=msg, inline=False)
+        if parsed_at:
+            parsed_at = parsed_at[:parsed_at.index('.')]
+            since = cf_common.pretty_time_format(now - int(clist.time_in_seconds(parsed_at)), only_most_significant=True)
+            embed.add_field(name='Updated', value=f'{since} ago')
         return embed
 
     @staticmethod
